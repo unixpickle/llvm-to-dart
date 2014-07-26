@@ -1,36 +1,23 @@
-//
-//  main.cpp
-//  LlvmToDart
-//
-//  Created by Alex Nichol on 7/26/14.
-//  Copyright (c) 2014 Alex Nichol. All rights reserved.
-//
+#include "globals.hpp"
 
-#define __STDC_LIMIT_MACROS
-#define __STDC_CONSTANT_MACROS
-
-#include <iostream>
-#include <llvm/Support/SourceMgr.h>
-#include <llvm/IR/LLVMContext.h>
-#include <llvm/IRReader/IRReader.h>
-#include <llvm/Support/raw_ostream.h>
-
-using namespace std;
+using namespace llvmtodart;
 
 int main(int argc, const char * argv[]) {
   if (argc != 2) {
-    cerr << "Usage: llvmtodart <some file.s>" << endl;
+    errs() << "Usage: llvmtodart <some file.s>";
     return 1;
   }
   
-  llvm::LLVMContext & context = llvm::getGlobalContext();
+  LLVMContext & context = llvm::getGlobalContext();
   llvm::SMDiagnostic err;
-  llvm::Module * module = llvm::ParseIRFile(argv[1], err, context);
-  
+  Module * module = llvm::ParseIRFile(argv[1], err, context);
   if (!module) {
     err.print("llvmtodart", llvm::errs());
     return 1;
   }
+  
+  Globals globals(*module);
+  outs() << globals;
   
   return 0;
 }
