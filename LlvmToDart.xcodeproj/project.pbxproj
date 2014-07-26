@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
+		FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		FA808C971984512A00F022DF /* LlvmToDart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LlvmToDart; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
+		FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libLLVM-3.4.dylib"; path = "../../../../usr/local/Cellar/llvm/3.4.2/lib/libLLVM-3.4.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 		FA808C8E1984512A00F022DF = {
 			isa = PBXGroup;
 			children = (
+				FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */,
 				FA808C991984512A00F022DF /* LlvmToDart */,
 				FA808C981984512A00F022DF /* Products */,
 			);
@@ -195,6 +199,15 @@
 		FA808CA11984512A00F022DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/llvm/3.4.2/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/llvm/3.4.2/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +215,15 @@
 		FA808CA21984512A00F022DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/llvm/3.4.2/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/llvm/3.4.2/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -225,6 +247,7 @@
 				FA808CA21984512A00F022DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
