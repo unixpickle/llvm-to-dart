@@ -3,18 +3,18 @@
 
 namespace llvmtodart {
 
-StringRef DartConfiguration::GetTab() {
+std::string DartConfiguration::GetTab() const {
   return "  ";
 }
 
-StringRef DartConfiguration::FieldName(unsigned int idx) {
+std::string DartConfiguration::FieldName(unsigned int idx) const {
   std::stringstream str;
   str << "field" << idx;
-  return StringRef(str.str());
+  return str.str();
 }
 
-StringRef DartConfiguration::EscapeSymbol(StringRef name) {
-  std::string str((std::string)name);
+std::string DartConfiguration::EscapeSymbol(StringRef name) const {
+  std::string str(name.str());
   
   for (auto i = 0; i < str.length(); ++i) {
     if (str[i] == '_') {

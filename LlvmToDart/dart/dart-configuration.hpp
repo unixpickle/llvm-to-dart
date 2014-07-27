@@ -7,9 +7,9 @@ namespace llvmtodart {
 
 class DartConfiguration {
 public:
-  virtual StringRef GetTab();
-  virtual StringRef FieldName(unsigned int idx);
-  virtual StringRef EscapeSymbol(StringRef name);
+  virtual std::string GetTab() const;
+  virtual std::string FieldName(unsigned int idx) const;
+  virtual std::string EscapeSymbol(StringRef name) const;
 };
 
 }

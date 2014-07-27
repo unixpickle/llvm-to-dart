@@ -1,11 +1,11 @@
 #include "global-table.hpp"
-#include "type-table.hpp"
+#include "struct-table.hpp"
 
 using namespace llvmtodart;
 
 int main(int argc, const char * argv[]) {
   if (argc != 2) {
-    errs() << "Usage: llvmtodart <some_file.s>";
+    errs() << "Usage: llvmtodart <some_file.s>\n";
     return 1;
   }
   
@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
   
   DartConfiguration dart;
   
-  TypeTable types(dart, *module);
+  StructTable types(dart, *module);
   outs() << types << "\n";
   
   GlobalTable globals(*module);
