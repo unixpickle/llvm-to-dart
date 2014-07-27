@@ -9,13 +9,9 @@ Struct::Struct(Module & m, const DartConfiguration & a, const StructType & b)
   for (unsigned int i = 0; i < typeInfo.getNumElements(); i++) {
     Type * fieldType = typeInfo.getElementType(i);
     std::string fieldName(dart.FieldName(i));
-    Field * f = PrimitiveField::CreateWithType(m, fieldName, fieldType);
-    if (!f) {
-      f = StructField::CreateWithType(m, fieldName, fieldType);
-    }
-    if (f) {
-      fields.push_back(f);
-    }
+    
+    Field * f = Field::CreateField(m, fieldName, fieldType);
+    if (f) fields.push_back(f);
   }
 }
 
@@ -47,7 +43,8 @@ void Struct::Print(raw_ostream & stream) const {
   stream << "\n" << dart.GetTab() << GetSymbolName() << "() {\n";
   for (auto i = 0; i < GetFieldCount(); i++) {
     const Field & field = GetField(i);
-    field.PrintInitialization(stream, dart.GetTab() + dart.GetTab());
+    field.PrintInitialization(stream, dart.GetTab() + dart.GetTab(),
+                              dart.GetTab());
     stream << "\n";
   }
   stream << dart.GetTab() << "}\n}";

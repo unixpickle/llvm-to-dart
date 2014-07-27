@@ -34,7 +34,8 @@ void PrimitiveField::PrintDeclaration(raw_ostream & stream,
 }
 
 void PrimitiveField::PrintInitialization(raw_ostream & stream,
-                                         const std::string & indent) const {
+                                         const std::string & indent,
+                                         const std::string & subIndent) const {
   stream << indent << GetFieldName() << " = new " << primType << "("
     << vectorCount << ");";
 }

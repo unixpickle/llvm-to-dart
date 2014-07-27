@@ -17,7 +17,8 @@ public:
   virtual void PrintDeclaration(raw_ostream & stream,
                                 const std::string & indent) const;
   virtual void PrintInitialization(raw_ostream & stream,
-                                   const std::string & indent) const;
+                                   const std::string & indent,
+                                   const std::string & subIndent) const;
   virtual Field * Clone() const;
   
 private:

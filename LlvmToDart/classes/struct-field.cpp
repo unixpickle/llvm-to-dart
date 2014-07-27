@@ -24,7 +24,8 @@ void StructField::PrintDeclaration(raw_ostream & stream,
 }
 
 void StructField::PrintInitialization(raw_ostream & stream,
-                                      const std::string & indent) const {
+                                      const std::string & indent,
+                                      const std::string & subIndent) const {
   stream << indent << GetFieldName() << " = new " << structName << "();";
 }
 

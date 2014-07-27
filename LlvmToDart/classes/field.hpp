@@ -7,6 +7,9 @@ namespace llvmtodart {
 
 class Field {
 public:
+  static Field * CreateField(Module & m, const std::string & fieldName,
+                             Type * type);
+  
   Field(const std::string & fieldName);
   Field(const Field &) = delete;
   Field & operator=(const Field &) = delete;
@@ -19,7 +22,8 @@ public:
   virtual void PrintDeclaration(raw_ostream & stream,
                                 const std::string & indent) const = 0;
   virtual void PrintInitialization(raw_ostream & stream,
-                                   const std::string & indent) const = 0;
+                                   const std::string & indent,
+                                   const std::string & subIndent) const = 0;
   virtual Field * Clone() const = 0;
   
 private:
