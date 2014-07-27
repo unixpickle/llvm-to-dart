@@ -1,10 +1,8 @@
 #include "struct.hpp"
-#include "primitive-field.hpp"
-#include "struct-field.hpp"
 
 namespace llvmtodart {
 
-Struct::Struct(Module & m, const DartConfiguration & a, const StructType & b)
+Struct::Struct(Module & m, const Settings & a, const StructType & b)
   : dart(a), typeInfo(b) {
   for (unsigned int i = 0; i < typeInfo.getNumElements(); i++) {
     Type * fieldType = typeInfo.getElementType(i);

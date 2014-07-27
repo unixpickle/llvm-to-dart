@@ -1,19 +1,18 @@
 #ifndef __LLVMTODART_STRUCT_TABLE_HPP__
 #define __LLVMTODART_STRUCT_TABLE_HPP__
 
-#include "llvm-includes.hpp"
 #include "struct.hpp"
 
 namespace llvmtodart {
 
 class StructTable {
 public:
-  StructTable(DartConfiguration & config, Module & module);
+  StructTable(Settings & config, Module & module);
   
   void Print(raw_ostream & stream) const;
   
 private:
-  DartConfiguration & dart;
+  Settings & dart;
   Module & module;
   SetVector<Struct> types;
 };

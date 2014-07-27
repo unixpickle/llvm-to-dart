@@ -1,19 +1,19 @@
-#include "dart-configuration.hpp"
+#include "settings.hpp"
 #include <sstream>
 
 namespace llvmtodart {
 
-std::string DartConfiguration::GetTab() const {
+std::string Settings::GetTab() const {
   return "  ";
 }
 
-std::string DartConfiguration::FieldName(unsigned int idx) const {
+std::string Settings::FieldName(unsigned int idx) const {
   std::stringstream str;
   str << "field" << idx;
   return str.str();
 }
 
-std::string DartConfiguration::EscapeSymbol(StringRef name) const {
+std::string Settings::EscapeSymbol(StringRef name) const {
   std::string str(name.str());
   
   for (auto i = 0; i < str.length(); ++i) {

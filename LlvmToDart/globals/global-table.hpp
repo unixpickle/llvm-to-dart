@@ -9,7 +9,7 @@ class GlobalTable {
 public:
   GlobalTable(Module & module);
   
-  void WriteTo(raw_ostream & stream) const;
+  void Print(raw_ostream & stream) const;
   
 private:
   const Module::GlobalListType & list;

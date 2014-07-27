@@ -2,14 +2,14 @@
 #define __LLVMTODART_STRUCT_HPP__
 
 #include "llvm-includes.hpp"
-#include "dart-configuration.hpp"
+#include "settings.hpp"
 #include "field.hpp"
 
 namespace llvmtodart {
 
 class Struct {
 public:
-  Struct(Module & m, const DartConfiguration &, const StructType &);
+  Struct(Module & m, const Settings &, const StructType &);
   Struct(const Struct & s);
   ~Struct();
   
@@ -27,7 +27,7 @@ public:
   bool operator<(const Struct &) const;
   
 protected:
-  const DartConfiguration & dart;
+  const Settings & dart;
   const StructType & typeInfo;
   std::vector<Field *> fields;
 };

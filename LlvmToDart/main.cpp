@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     return 1;
   }
   
-  DartConfiguration dart;
+  Settings dart;
   
   StructTable types(dart, *module);
   outs() << types << "\n";

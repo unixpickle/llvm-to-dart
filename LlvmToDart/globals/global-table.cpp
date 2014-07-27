@@ -5,7 +5,7 @@ namespace llvmtodart {
 GlobalTable::GlobalTable(Module & m) : module(m), list(m.getGlobalList()) {
 }
 
-void GlobalTable::WriteTo(llvm::raw_ostream & stream) const {
+void GlobalTable::Print(llvm::raw_ostream & stream) const {
   auto iter = list.begin();
   auto end = list.end();
   while (iter != end) {
@@ -18,7 +18,7 @@ void GlobalTable::WriteTo(llvm::raw_ostream & stream) const {
 }
 
 raw_ostream & operator<<(raw_ostream & stream, const GlobalTable & globals) {
-  globals.WriteTo(stream);
+  globals.Print(stream);
   return stream;
 }
 

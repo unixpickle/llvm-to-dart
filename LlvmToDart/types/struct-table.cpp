@@ -2,7 +2,7 @@
 
 namespace llvmtodart {
 
-StructTable::StructTable(DartConfiguration & _dart, Module & m)
+StructTable::StructTable(Settings & _dart, Module & m)
   : dart(_dart), module(m) {
   FindUsedTypes finder;
   finder.runOnModule(module);
@@ -10,7 +10,9 @@ StructTable::StructTable(DartConfiguration & _dart, Module & m)
   for (auto iter = finder.getTypes().begin(); iter != iterEnd; ++iter) {
     Type * type = *iter;
     if (!type->isStructTy()) continue;
-    Struct st(module, dart, *static_cast<StructType *>(type));
+    StructType & info = *static_cast<StructType *>(type);
+    if (info.isLiteral()) continue;
+    Struct st(module, dart, info);
     types.insert(st);
   }
 }
