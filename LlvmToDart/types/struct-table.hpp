@@ -2,22 +2,22 @@
 #define __LLVMTODART_STRUCT_TABLE_HPP__
 
 #include "struct.hpp"
+#include "encodable.hpp"
 
 namespace llvmtodart {
 
-class StructTable {
+class Session;
+
+class StructTable : public Encodable {
 public:
-  StructTable(Settings & config, Module & module);
+  StructTable(Session & s);
   
   void Print(raw_ostream & stream) const;
   
 private:
-  Settings & dart;
-  Module & module;
+  Session & session;
   SetVector<Struct> types;
 };
-
-raw_ostream & operator<<(raw_ostream & stream, const StructTable &);
 
 }
 

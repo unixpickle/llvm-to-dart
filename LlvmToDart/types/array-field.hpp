@@ -7,19 +7,19 @@ namespace llvmtodart {
 
 class ArrayField : public Field {
 public:
-  static ArrayField * CreateWithType(Module & m,
+  static ArrayField * CreateWithType(Session & s,
                                      const std::string & fieldName,
                                      Type * fieldType);
   
-  ArrayField(const std::string & fieldName, uint64_t elements, Field * sub);
+  ArrayField(Session & s, const std::string & fieldName, uint64_t elements,
+             Field * sub);
   virtual ~ArrayField();
   
   virtual void PrintType(raw_ostream & stream) const;
   virtual void PrintDeclaration(raw_ostream & stream,
                                 const std::string & indent) const;
   virtual void PrintInitialization(raw_ostream & stream,
-                                   const std::string & indent,
-                                   const std::string & subIndent) const;
+                                   const std::string & indent) const;
   virtual Field * Clone() const;
   
 private:

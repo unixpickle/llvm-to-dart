@@ -1,4 +1,5 @@
 #include "primitive-field.hpp"
+#include "session.hpp"
 #include <sstream>
 
 namespace llvmtodart {
@@ -11,7 +12,7 @@ bool IsNumericType(Type * t) {
 
 }
 
-PrimitiveField * PrimitiveField::CreateWithType(Module & m,
+PrimitiveField * PrimitiveField::CreateWithType(Session & s,
                                                 const std::string & fieldName,
                                                 Type * fieldType) {
   unsigned long long fieldCount = 1;
@@ -21,29 +22,29 @@ PrimitiveField * PrimitiveField::CreateWithType(Module & m,
     fieldType = fieldType->getArrayElementType();
   }
   if (fieldType->isFloatTy()) {
-    return new PrimitiveField(fieldName, "Float32List", fieldCount);
+    return new PrimitiveField(s, fieldName, "Float32List", fieldCount);
   } else if (fieldType->isDoubleTy()) {
-    return new PrimitiveField(fieldName, "Float64List", fieldCount);
+    return new PrimitiveField(s, fieldName, "Float64List", fieldCount);
   } else if (fieldType->isIntegerTy()) {
-    DataLayout layout(m.getDataLayout());
+    DataLayout layout(s.GetModule().getDataLayout());
     unsigned long long size = layout.getTypeSizeInBits(fieldType);
     if (size == 8 || size == 0x10 || size == 0x20 || size == 0x40) {
       std::stringstream stream("");
       stream << "Uint" << size << "List";
-      return new PrimitiveField(fieldName, stream.str(), fieldCount);
+      return new PrimitiveField(s, fieldName, stream.str(), fieldCount);
     }
     
     if (size % 8) size += 8;
-    return new PrimitiveField(fieldName, "Uint8List",
+    return new PrimitiveField(s, fieldName, "Uint8List",
                               fieldCount * (size / 8));
   }
   return nullptr;
 }
 
-PrimitiveField::PrimitiveField(const std::string & fieldName,
+PrimitiveField::PrimitiveField(Session & s, const std::string & fieldName,
                                const std::string & _prim,
                                unsigned long long _vectorCount)
-  : Field(fieldName), primType(_prim), vectorCount(_vectorCount) {
+  : Field(s, fieldName), primType(_prim), vectorCount(_vectorCount) {
 }
 
 void PrimitiveField::PrintType(raw_ostream & stream) const {
@@ -56,14 +57,13 @@ void PrimitiveField::PrintDeclaration(raw_ostream & stream,
 }
 
 void PrimitiveField::PrintInitialization(raw_ostream & stream,
-                                         const std::string & indent,
-                                         const std::string & subIndent) const {
+                                         const std::string & indent) const {
   stream << indent << GetFieldName() << " = new " << primType << "("
     << vectorCount << ");";
 }
 
 Field * PrimitiveField::Clone() const {
-  return new PrimitiveField(GetFieldName(), primType, vectorCount);
+  return new PrimitiveField(GetSession(), GetFieldName(), primType, vectorCount);
 }
 
 }

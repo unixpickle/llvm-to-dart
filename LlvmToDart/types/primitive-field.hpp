@@ -7,19 +7,19 @@ namespace llvmtodart {
 
 class PrimitiveField : public Field {
 public:
-  static PrimitiveField * CreateWithType(Module & m,
+  static PrimitiveField * CreateWithType(Session & s,
                                          const std::string & fieldName,
                                          Type * fieldType);
   
-  PrimitiveField(const std::string & fieldName, const std::string & primType,
+  PrimitiveField(Session & session, const std::string & fieldName,
+                 const std::string & primType,
                  unsigned long long vectorCount);
   
   virtual void PrintType(raw_ostream & stream) const;
   virtual void PrintDeclaration(raw_ostream & stream,
                                 const std::string & indent) const;
   virtual void PrintInitialization(raw_ostream & stream,
-                                   const std::string & indent,
-                                   const std::string & subIndent) const;
+                                   const std::string & indent) const;
   virtual Field * Clone() const;
   
 private:

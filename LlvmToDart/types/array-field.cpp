@@ -1,22 +1,23 @@
 #include "array-field.hpp"
+#include "session.hpp"
 
 namespace llvmtodart {
 
-ArrayField * ArrayField::CreateWithType(Module & m,
+ArrayField * ArrayField::CreateWithType(Session & s,
                                         const std::string & fieldName,
                                         Type * fieldType) {
   if (!fieldType->isArrayTy()) return nullptr;
   Type * containedType = fieldType->getArrayElementType();
-  Field * subField = Field::CreateField(m, "namedLoopVar", containedType);
+  Field * subField = Field::CreateField(s, "namedLoopVar", containedType);
   if (!subField) return nullptr;
   
-  return new ArrayField(fieldName, fieldType->getArrayNumElements(),
+  return new ArrayField(s, fieldName, fieldType->getArrayNumElements(),
                         subField);
 }
 
-ArrayField::ArrayField(const std::string & fieldName, uint64_t elements,
-                       Field * sub)
-  : Field(fieldName), elements(elements), subField(sub) {
+ArrayField::ArrayField(Session & s, const std::string & fieldName,
+                       uint64_t elements, Field * sub)
+  : Field(s, fieldName), elements(elements), subField(sub) {
 }
 
 ArrayField::~ArrayField() {
@@ -37,23 +38,25 @@ void ArrayField::PrintDeclaration(raw_ostream & stream,
 }
 
 void ArrayField::PrintInitialization(raw_ostream & stream,
-                                     const std::string & indent,
-                                     const std::string & subIndent) const {
+                                     const std::string & indent) const {
   stream << indent << GetFieldName() << " = new ";
   PrintType(stream);
   stream << "();\n";
   
+  std::string subIndent(GetSession().GetSettings().GetTab());
+  
   stream << indent << "for (int i = 0; i < " << elements << "; i++) {\n";
   subField->PrintDeclaration(stream, indent + subIndent);
   stream << "\n";
-  subField->PrintInitialization(stream, indent + subIndent, subIndent);
+  subField->PrintInitialization(stream, indent + subIndent);
   stream << "\n" << indent << subIndent << GetFieldName()
     << ".add(namedLoopVar);\n";
   stream << indent << "}";
 }
 
 Field * ArrayField::Clone() const {
-  return new ArrayField(GetFieldName(), elements, subField->Clone());
+  return new ArrayField(GetSession(), GetFieldName(), elements,
+                        subField->Clone());
 }
 
 }

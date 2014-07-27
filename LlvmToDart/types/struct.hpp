@@ -1,22 +1,23 @@
 #ifndef __LLVMTODART_STRUCT_HPP__
 #define __LLVMTODART_STRUCT_HPP__
 
-#include "llvm-includes.hpp"
-#include "settings.hpp"
 #include "field.hpp"
+#include "encodable.hpp"
 
 namespace llvmtodart {
 
-class Struct {
+class Session;
+
+class Struct : public Encodable {
 public:
-  Struct(Module & m, const Settings &, const StructType &);
-  Struct(const Struct & s);
+  Struct(Session &, const StructType &);
+  Struct(const Struct &);
   ~Struct();
   
   Struct & operator=(const Struct &);
   
-  void Print(raw_ostream &) const;
-  std::string GetSymbolName() const;
+  virtual void Print(raw_ostream &) const;
+  std::string GetName() const;
   
   unsigned int GetFieldCount() const;
   const Field & GetField(unsigned int i) const;
@@ -27,8 +28,9 @@ public:
   bool operator<(const Struct &) const;
   
 protected:
-  const Settings & dart;
+  Session & session;
   const StructType & typeInfo;
+  std::string className;
   std::vector<Field *> fields;
 };
 

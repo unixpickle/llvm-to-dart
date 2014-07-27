@@ -1,5 +1,4 @@
-#include "global-table.hpp"
-#include "struct-table.hpp"
+#include "session.hpp"
 
 using namespace llvmtodart;
 
@@ -17,14 +16,14 @@ int main(int argc, const char * argv[]) {
     return 1;
   }
   
-  Settings dart;
+  Settings settings;
+  Session session(settings, *module);
   
-  StructTable types(dart, *module);
-  outs() << types << "\n";
+  session.GetStructs().Print(outs());
+  outs() << "\n";
   
-  GlobalTable globals(*module);
-  outs() << globals << "\n";
-  
+  session.GetGlobals().Print(outs());
+  outs() << "\n";
   outs().flush();
   
   return 0;

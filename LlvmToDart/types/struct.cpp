@@ -1,19 +1,20 @@
 #include "struct.hpp"
+#include "session.hpp"
 
 namespace llvmtodart {
 
-Struct::Struct(Module & m, const Settings & a, const StructType & b)
-  : dart(a), typeInfo(b) {
+Struct::Struct(Session & a, const StructType & b)
+  : session(a), typeInfo(b) {
   for (unsigned int i = 0; i < typeInfo.getNumElements(); i++) {
     Type * fieldType = typeInfo.getElementType(i);
-    std::string fieldName(dart.FieldName(i));
+    std::string fieldName(session.GetSettings().FieldName(i));
     
-    Field * f = Field::CreateField(m, fieldName, fieldType);
+    Field * f = Field::CreateField(session, fieldName, fieldType);
     if (f) fields.push_back(f);
   }
 }
 
-Struct::Struct(const Struct & s) : dart(s.dart), typeInfo(s.typeInfo) {
+Struct::Struct(const Struct & s) : session(s.session), typeInfo(s.typeInfo) {
   for (unsigned int i = 0; i < s.GetFieldCount(); i++) {
     fields.push_back(s.GetField(i).Clone());
   }
@@ -27,25 +28,27 @@ Struct::~Struct() {
   }
 }
 
-std::string Struct::GetSymbolName() const {
-  return dart.EscapeSymbol(typeInfo.getName());
+std::string Struct::GetName() const {
+  return session.GetSettings().EscapeSymbol(typeInfo.getName());
 }
 
 void Struct::Print(raw_ostream & stream) const {
-  stream << "class " << GetSymbolName() << " {\n";
+  std::string tab(session.GetSettings().GetTab());
+  
+  stream << "class " << GetName() << " {\n";
   for (auto i = 0; i < GetFieldCount(); i++) {
     const Field & field = GetField(i);
-    field.PrintDeclaration(stream, dart.GetTab());
+    field.PrintDeclaration(stream, tab);
     stream << "\n";
   }
-  stream << "\n" << dart.GetTab() << GetSymbolName() << "() {\n";
+  stream << "\n" << tab << GetName()
+    << "() {\n";
   for (auto i = 0; i < GetFieldCount(); i++) {
     const Field & field = GetField(i);
-    field.PrintInitialization(stream, dart.GetTab() + dart.GetTab(),
-                              dart.GetTab());
+    field.PrintInitialization(stream, tab + tab);
     stream << "\n";
   }
-  stream << dart.GetTab() << "}\n}";
+  stream << tab << "}\n}";
 }
 
 unsigned int Struct::GetFieldCount() const {

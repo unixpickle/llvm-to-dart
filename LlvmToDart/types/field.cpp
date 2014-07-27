@@ -5,19 +5,24 @@
 
 namespace llvmtodart {
 
-Field * Field::CreateField(Module & m, const std::string & fieldName,
+Field * Field::CreateField(Session & s, const std::string & fieldName,
                            Type * fieldType) {
-  Field * f = PrimitiveField::CreateWithType(m, fieldName, fieldType);
-  if (!f) f = StructField::CreateWithType(m, fieldName, fieldType);
-  if (!f) f = ArrayField::CreateWithType(m, fieldName, fieldType);
+  Field * f = PrimitiveField::CreateWithType(s, fieldName, fieldType);
+  if (!f) f = StructField::CreateWithType(s, fieldName, fieldType);
+  if (!f) f = ArrayField::CreateWithType(s, fieldName, fieldType);
   return f;
 }
 
-Field::Field(const std::string & _fieldName) : fieldName(_fieldName) {
+Field::Field(Session & session, const std::string & _fieldName)
+  : session(session), fieldName(_fieldName) {
 }
 
 StringRef Field::GetFieldName() const {
   return StringRef(fieldName);
+}
+
+Session & Field::GetSession() const {
+  return session;
 }
 
 }

@@ -7,18 +7,18 @@ namespace llvmtodart {
 
 class StructField : public Field {
 public:
-  static StructField * CreateWithType(Module & m,
+  static StructField * CreateWithType(Session & s,
                                       const std::string & fieldName,
                                       Type * fieldType);
   
-  StructField(const std::string & fieldName, const std::string & structName);
+  StructField(Session & s, const std::string & fieldName,
+              const std::string & structName);
   
   virtual void PrintType(raw_ostream & stream) const;
   virtual void PrintDeclaration(raw_ostream & stream,
                                 const std::string & indent) const;
   virtual void PrintInitialization(raw_ostream & stream,
-                                   const std::string & indent,
-                                   const std::string & subIndent) const;
+                                   const std::string & indent) const;
   virtual Field * Clone() const;
   
 private:

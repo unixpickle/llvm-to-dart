@@ -14,7 +14,9 @@
 		FA2AAE68198584890072D648 /* struct-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE60198584890072D648 /* struct-table.cpp */; };
 		FA2AAE69198584890072D648 /* struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE62198584890072D648 /* struct.cpp */; };
 		FA2AAE6D198584B00072D648 /* global-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE6B198584B00072D648 /* global-table.cpp */; };
-		FA2AAE70198584D30072D648 /* settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE6E198584D30072D648 /* settings.cpp */; };
+		FA2AAE74198586FA0072D648 /* settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE72198586FA0072D648 /* settings.cpp */; };
+		FA2AAE77198587030072D648 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE75198587030072D648 /* session.cpp */; };
+		FA2AAE7A198588760072D648 /* encodable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE78198588760072D648 /* encodable.cpp */; };
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
 		FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */; };
@@ -48,8 +50,12 @@
 		FA2AAE63198584890072D648 /* struct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = struct.hpp; sourceTree = "<group>"; };
 		FA2AAE6B198584B00072D648 /* global-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "global-table.cpp"; sourceTree = "<group>"; };
 		FA2AAE6C198584B00072D648 /* global-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "global-table.hpp"; sourceTree = "<group>"; };
-		FA2AAE6E198584D30072D648 /* settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = settings.cpp; path = LlvmToDart/formatting/settings.cpp; sourceTree = SOURCE_ROOT; };
-		FA2AAE6F198584D30072D648 /* settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = settings.hpp; path = LlvmToDart/formatting/settings.hpp; sourceTree = SOURCE_ROOT; };
+		FA2AAE72198586FA0072D648 /* settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settings.cpp; sourceTree = "<group>"; };
+		FA2AAE73198586FA0072D648 /* settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = settings.hpp; sourceTree = "<group>"; };
+		FA2AAE75198587030072D648 /* session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
+		FA2AAE76198587030072D648 /* session.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hpp; sourceTree = "<group>"; };
+		FA2AAE78198588760072D648 /* encodable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = encodable.cpp; sourceTree = "<group>"; };
+		FA2AAE79198588760072D648 /* encodable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = encodable.hpp; sourceTree = "<group>"; };
 		FA808C971984512A00F022DF /* LlvmToDart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LlvmToDart; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
@@ -70,16 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA2AAE3E1984BA5F0072D648 /* formatting */ = {
-			isa = PBXGroup;
-			children = (
-				FA2AAE6E198584D30072D648 /* settings.cpp */,
-				FA2AAE6F198584D30072D648 /* settings.hpp */,
-			);
-			name = formatting;
-			path = dart;
-			sourceTree = "<group>";
-		};
 		FA2AAE57198584890072D648 /* types */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +104,17 @@
 			path = globals;
 			sourceTree = "<group>";
 		};
+		FA2AAE71198586FA0072D648 /* session */ = {
+			isa = PBXGroup;
+			children = (
+				FA2AAE73198586FA0072D648 /* settings.hpp */,
+				FA2AAE72198586FA0072D648 /* settings.cpp */,
+				FA2AAE76198587030072D648 /* session.hpp */,
+				FA2AAE75198587030072D648 /* session.cpp */,
+			);
+			path = session;
+			sourceTree = "<group>";
+		};
 		FA808C8E1984512A00F022DF = {
 			isa = PBXGroup;
 			children = (
@@ -128,13 +135,15 @@
 		FA808C991984512A00F022DF /* LlvmToDart */ = {
 			isa = PBXGroup;
 			children = (
+				FA2AAE71198586FA0072D648 /* session */,
 				FA2AAE6A198584B00072D648 /* globals */,
 				FA2AAE57198584890072D648 /* types */,
-				FA2AAE3E1984BA5F0072D648 /* formatting */,
 				FA808C9A1984512A00F022DF /* main.cpp */,
 				FA808C9C1984512A00F022DF /* LlvmToDart.1 */,
 				FAD4ABD31984682A001949A9 /* llvm-includes.hpp */,
 				FAD4ABD71984963D001949A9 /* safe-assert.hpp */,
+				FA2AAE79198588760072D648 /* encodable.hpp */,
+				FA2AAE78198588760072D648 /* encodable.cpp */,
 			);
 			path = LlvmToDart;
 			sourceTree = "<group>";
@@ -195,8 +204,10 @@
 				FA2AAE68198584890072D648 /* struct-table.cpp in Sources */,
 				FA2AAE66198584890072D648 /* primitive-field.cpp in Sources */,
 				FA808C9B1984512A00F022DF /* main.cpp in Sources */,
+				FA2AAE7A198588760072D648 /* encodable.cpp in Sources */,
 				FA2AAE69198584890072D648 /* struct.cpp in Sources */,
-				FA2AAE70198584D30072D648 /* settings.cpp in Sources */,
+				FA2AAE77198587030072D648 /* session.cpp in Sources */,
+				FA2AAE74198586FA0072D648 /* settings.cpp in Sources */,
 				FA2AAE6D198584B00072D648 /* global-table.cpp in Sources */,
 				FA2AAE65198584890072D648 /* field.cpp in Sources */,
 			);
