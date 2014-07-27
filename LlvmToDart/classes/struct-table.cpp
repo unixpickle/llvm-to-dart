@@ -10,7 +10,7 @@ StructTable::StructTable(DartConfiguration & _dart, Module & m)
   for (auto iter = finder.getTypes().begin(); iter != iterEnd; ++iter) {
     Type * type = *iter;
     if (!type->isStructTy()) continue;
-    Struct st(dart, *static_cast<StructType *>(type));
+    Struct st(module, dart, *static_cast<StructType *>(type));
     types.insert(st);
   }
 }

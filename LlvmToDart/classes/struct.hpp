@@ -3,18 +3,23 @@
 
 #include "llvm-includes.hpp"
 #include "dart-configuration.hpp"
+#include "field.hpp"
 
 namespace llvmtodart {
 
 class Struct {
 public:
-  Struct(const DartConfiguration &, const StructType &);
+  Struct(Module & m, const DartConfiguration &, const StructType &);
+  Struct(const Struct & s);
+  ~Struct();
+  
+  Struct & operator=(const Struct &);
   
   void Print(raw_ostream &) const;
   std::string GetSymbolName() const;
   
   unsigned int GetFieldCount() const;
-  std::string GetFieldName(unsigned int) const;
+  const Field & GetField(unsigned int i) const;
   
   bool operator==(const Struct &) const;
   bool operator!=(const Struct &) const;
@@ -24,6 +29,7 @@ public:
 protected:
   const DartConfiguration & dart;
   const StructType & typeInfo;
+  std::vector<Field *> fields;
 };
 
 }

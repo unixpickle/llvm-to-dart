@@ -1,8 +1,36 @@
 #include "struct.hpp"
+#include "primitive-field.hpp"
+#include "struct-field.hpp"
 
 namespace llvmtodart {
 
-Struct::Struct(const DartConfiguration & a, const StructType & b) : dart(a), typeInfo(b) {
+Struct::Struct(Module & m, const DartConfiguration & a, const StructType & b)
+  : dart(a), typeInfo(b) {
+  for (unsigned int i = 0; i < typeInfo.getNumElements(); i++) {
+    Type * fieldType = typeInfo.getElementType(i);
+    std::string fieldName(dart.FieldName(i));
+    Field * f = PrimitiveField::CreateWithType(m, fieldName, fieldType);
+    if (!f) {
+      f = StructField::CreateWithType(m, fieldName, fieldType);
+    }
+    if (f) {
+      fields.push_back(f);
+    }
+  }
+}
+
+Struct::Struct(const Struct & s) : dart(s.dart), typeInfo(s.typeInfo) {
+  for (unsigned int i = 0; i < s.GetFieldCount(); i++) {
+    fields.push_back(s.GetField(i).Clone());
+  }
+}
+
+Struct::~Struct() {
+  while (fields.size()) {
+    Field * f = fields[fields.size() - 1];
+    fields.pop_back();
+    delete f;
+  }
 }
 
 std::string Struct::GetSymbolName() const {
@@ -12,24 +40,25 @@ std::string Struct::GetSymbolName() const {
 void Struct::Print(raw_ostream & stream) const {
   stream << "class " << GetSymbolName() << " {\n";
   for (auto i = 0; i < GetFieldCount(); i++) {
-    Type * fieldType = typeInfo.getElementType(i);
-    if (fieldType->isStructTy()) {
-      StringRef name = fieldType->getStructName();
-      stream << dart.GetTab() << dart.EscapeSymbol(name) << " "
-        << dart.FieldName(i) << ";\n";
-    } else if (typeInfo.isSized()) {
-      stream << dart.GetTab() << "ByteData " << dart.FieldName(i) << ";\n";
-    }
+    const Field & field = GetField(i);
+    field.PrintDeclaration(stream, dart.GetTab());
+    stream << "\n";
   }
-  stream << "}";
+  stream << "\n" << dart.GetTab() << GetSymbolName() << "() {\n";
+  for (auto i = 0; i < GetFieldCount(); i++) {
+    const Field & field = GetField(i);
+    field.PrintInitialization(stream, dart.GetTab() + dart.GetTab());
+    stream << "\n";
+  }
+  stream << dart.GetTab() << "}\n}";
 }
 
 unsigned int Struct::GetFieldCount() const {
-  return typeInfo.getNumElements();
+  return (unsigned int)fields.size();
 }
 
-std::string Struct::GetFieldName(unsigned int i) const {
-  return dart.FieldName(i);
+const Field & Struct::GetField(unsigned int i) const {
+  return *fields[i];
 }
 
 bool Struct::operator==(const Struct & s) const {

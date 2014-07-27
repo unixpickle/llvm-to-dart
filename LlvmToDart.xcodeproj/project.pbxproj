@@ -10,6 +10,10 @@
 		FA2AAE411984BA5F0072D648 /* dart-configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE3F1984BA5F0072D648 /* dart-configuration.cpp */; };
 		FA2AAE451984BAAA0072D648 /* struct-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE431984BAAA0072D648 /* struct-table.cpp */; };
 		FA2AAE481984BAC30072D648 /* struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE461984BAC30072D648 /* struct.cpp */; };
+		FA2AAE4E1985396E0072D648 /* primitive-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE4C1985396E0072D648 /* primitive-field.cpp */; };
+		FA2AAE5019853A180072D648 /* field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE4F19853A180072D648 /* field.cpp */; };
+		FA2AAE531985405B0072D648 /* struct-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE511985405B0072D648 /* struct-field.cpp */; };
+		FA2AAE5619854C920072D648 /* array-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE5419854C920072D648 /* array-field.cpp */; };
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
 		FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */; };
@@ -36,6 +40,14 @@
 		FA2AAE441984BAAA0072D648 /* struct-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-table.hpp"; sourceTree = "<group>"; };
 		FA2AAE461984BAC30072D648 /* struct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = struct.cpp; sourceTree = "<group>"; };
 		FA2AAE471984BAC30072D648 /* struct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = struct.hpp; sourceTree = "<group>"; };
+		FA2AAE4A198538C80072D648 /* field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = field.hpp; sourceTree = "<group>"; };
+		FA2AAE4C1985396E0072D648 /* primitive-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "primitive-field.cpp"; sourceTree = "<group>"; };
+		FA2AAE4D1985396E0072D648 /* primitive-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "primitive-field.hpp"; sourceTree = "<group>"; };
+		FA2AAE4F19853A180072D648 /* field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = field.cpp; sourceTree = "<group>"; };
+		FA2AAE511985405B0072D648 /* struct-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "struct-field.cpp"; sourceTree = "<group>"; };
+		FA2AAE521985405B0072D648 /* struct-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-field.hpp"; sourceTree = "<group>"; };
+		FA2AAE5419854C920072D648 /* array-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "array-field.cpp"; sourceTree = "<group>"; };
+		FA2AAE5519854C920072D648 /* array-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "array-field.hpp"; sourceTree = "<group>"; };
 		FA808C971984512A00F022DF /* LlvmToDart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LlvmToDart; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
@@ -74,6 +86,14 @@
 				FA2AAE431984BAAA0072D648 /* struct-table.cpp */,
 				FA2AAE471984BAC30072D648 /* struct.hpp */,
 				FA2AAE461984BAC30072D648 /* struct.cpp */,
+				FA2AAE4A198538C80072D648 /* field.hpp */,
+				FA2AAE4F19853A180072D648 /* field.cpp */,
+				FA2AAE4D1985396E0072D648 /* primitive-field.hpp */,
+				FA2AAE4C1985396E0072D648 /* primitive-field.cpp */,
+				FA2AAE521985405B0072D648 /* struct-field.hpp */,
+				FA2AAE511985405B0072D648 /* struct-field.cpp */,
+				FA2AAE5519854C920072D648 /* array-field.hpp */,
+				FA2AAE5419854C920072D648 /* array-field.cpp */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -164,8 +184,12 @@
 				FAD4ABD219846258001949A9 /* global-table.cpp in Sources */,
 				FA808C9B1984512A00F022DF /* main.cpp in Sources */,
 				FA2AAE451984BAAA0072D648 /* struct-table.cpp in Sources */,
+				FA2AAE5619854C920072D648 /* array-field.cpp in Sources */,
+				FA2AAE4E1985396E0072D648 /* primitive-field.cpp in Sources */,
 				FA2AAE481984BAC30072D648 /* struct.cpp in Sources */,
 				FA2AAE411984BA5F0072D648 /* dart-configuration.cpp in Sources */,
+				FA2AAE5019853A180072D648 /* field.cpp in Sources */,
+				FA2AAE531985405B0072D648 /* struct-field.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
