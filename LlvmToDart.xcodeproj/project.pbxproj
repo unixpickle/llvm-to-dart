@@ -10,7 +10,9 @@
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
 		FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */; };
-		FAD4ABD219846258001949A9 /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ABD019846258001949A9 /* globals.cpp */; };
+		FAD4ABD219846258001949A9 /* global-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ABD019846258001949A9 /* global-table.cpp */; };
+		FAD4ABD619848BF9001949A9 /* type-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ABD419848BF9001949A9 /* type-table.cpp */; };
+		FAD4ABDD19849E00001949A9 /* dart-configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ABDB19849E00001949A9 /* dart-configuration.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,9 +33,14 @@
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
 		FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libLLVM-3.4.dylib"; path = "../../../../usr/local/Cellar/llvm/3.4.2/lib/libLLVM-3.4.dylib"; sourceTree = "<group>"; };
-		FAD4ABD019846258001949A9 /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
-		FAD4ABD119846258001949A9 /* globals.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = globals.hpp; sourceTree = "<group>"; };
+		FAD4ABD019846258001949A9 /* global-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "global-table.cpp"; sourceTree = "<group>"; };
+		FAD4ABD119846258001949A9 /* global-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "global-table.hpp"; sourceTree = "<group>"; };
 		FAD4ABD31984682A001949A9 /* llvm-includes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "llvm-includes.hpp"; sourceTree = "<group>"; };
+		FAD4ABD419848BF9001949A9 /* type-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "type-table.cpp"; sourceTree = "<group>"; };
+		FAD4ABD519848BF9001949A9 /* type-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "type-table.hpp"; sourceTree = "<group>"; };
+		FAD4ABD71984963D001949A9 /* safe-assert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "safe-assert.hpp"; sourceTree = "<group>"; };
+		FAD4ABDB19849E00001949A9 /* dart-configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dart-configuration.cpp"; sourceTree = "<group>"; };
+		FAD4ABDC19849E00001949A9 /* dart-configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "dart-configuration.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +75,16 @@
 		FA808C991984512A00F022DF /* LlvmToDart */ = {
 			isa = PBXGroup;
 			children = (
-				FAD4ABD119846258001949A9 /* globals.hpp */,
-				FAD4ABD019846258001949A9 /* globals.cpp */,
+				FAD4ABD519848BF9001949A9 /* type-table.hpp */,
+				FAD4ABD419848BF9001949A9 /* type-table.cpp */,
+				FAD4ABD119846258001949A9 /* global-table.hpp */,
+				FAD4ABD019846258001949A9 /* global-table.cpp */,
 				FA808C9A1984512A00F022DF /* main.cpp */,
 				FA808C9C1984512A00F022DF /* LlvmToDart.1 */,
 				FAD4ABD31984682A001949A9 /* llvm-includes.hpp */,
+				FAD4ABD71984963D001949A9 /* safe-assert.hpp */,
+				FAD4ABDC19849E00001949A9 /* dart-configuration.hpp */,
+				FAD4ABDB19849E00001949A9 /* dart-configuration.cpp */,
 			);
 			path = LlvmToDart;
 			sourceTree = "<group>";
@@ -128,8 +140,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD4ABD219846258001949A9 /* globals.cpp in Sources */,
+				FAD4ABD219846258001949A9 /* global-table.cpp in Sources */,
 				FA808C9B1984512A00F022DF /* main.cpp in Sources */,
+				FAD4ABD619848BF9001949A9 /* type-table.cpp in Sources */,
+				FAD4ABDD19849E00001949A9 /* dart-configuration.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

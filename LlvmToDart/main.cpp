@@ -1,10 +1,11 @@
-#include "globals.hpp"
+#include "global-table.hpp"
+#include "type-table.hpp"
 
 using namespace llvmtodart;
 
 int main(int argc, const char * argv[]) {
   if (argc != 2) {
-    errs() << "Usage: llvmtodart <some file.s>";
+    errs() << "Usage: llvmtodart <some_file.s>";
     return 1;
   }
   
@@ -16,8 +17,15 @@ int main(int argc, const char * argv[]) {
     return 1;
   }
   
-  Globals globals(*module);
-  outs() << globals;
+  DartConfiguration dart;
+  
+  TypeTable types(dart, *module);
+  outs() << types << "\n";
+  
+  GlobalTable globals(*module);
+  outs() << globals << "\n";
+  
+  outs().flush();
   
   return 0;
 }

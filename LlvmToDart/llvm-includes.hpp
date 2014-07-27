@@ -16,6 +16,7 @@
 #include <llvm/IR/Module.h>
 #include <llvm/IRReader/IRReader.h>
 #include <llvm/Support/raw_ostream.h>
+#include <llvm/Analysis/FindUsedTypes.h>
 
 namespace llvmtodart {
 
