@@ -38,7 +38,11 @@ void Struct::Print(raw_ostream & stream) const {
   {
     IndentScope scope(GetSession());
     
+    //stream << scope.GetIndentation() << "int parentOffset;\n";
+    //stream << scope.GetIndentation() << "Object parentObject;\n";
+    
     for (auto i = 0; i < GetVariableCount(); i++) {
+      if (i == 0) stream << "\n";
       const Variable & var = GetVariable(i);
       var.PrintDeclaration(stream);
       stream << "\n";

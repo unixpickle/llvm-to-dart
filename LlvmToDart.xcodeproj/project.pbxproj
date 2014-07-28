@@ -18,6 +18,7 @@
 		FA6AB0301985E351008C13FE /* scalar-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0281985E351008C13FE /* scalar-variable.cpp */; };
 		FA6AB0311985E351008C13FE /* struct-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB02A1985E351008C13FE /* struct-variable.cpp */; };
 		FA6AB0341985E495008C13FE /* indent-scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0321985E495008C13FE /* indent-scope.cpp */; };
+		FA6AB0371985EF78008C13FE /* function-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0351985EF78008C13FE /* function-variable.cpp */; };
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
 		FACAE44A1985B0100096E60D /* session-object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAE4481985B0100096E60D /* session-object.cpp */; };
@@ -60,6 +61,8 @@
 		FA6AB02B1985E351008C13FE /* struct-variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-variable.hpp"; sourceTree = "<group>"; };
 		FA6AB0321985E495008C13FE /* indent-scope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "indent-scope.cpp"; sourceTree = "<group>"; };
 		FA6AB0331985E495008C13FE /* indent-scope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "indent-scope.hpp"; sourceTree = "<group>"; };
+		FA6AB0351985EF78008C13FE /* function-variable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "function-variable.cpp"; sourceTree = "<group>"; };
+		FA6AB0361985EF78008C13FE /* function-variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "function-variable.hpp"; sourceTree = "<group>"; };
 		FA808C971984512A00F022DF /* LlvmToDart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LlvmToDart; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
@@ -67,7 +70,6 @@
 		FACAE4491985B0100096E60D /* session-object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "session-object.hpp"; sourceTree = "<group>"; };
 		FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libLLVM-3.4.dylib"; path = "../../../../usr/local/Cellar/llvm/3.4.2/lib/libLLVM-3.4.dylib"; sourceTree = "<group>"; };
 		FAD4ABD31984682A001949A9 /* llvm-includes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "llvm-includes.hpp"; sourceTree = "<group>"; };
-		FAD4ABD71984963D001949A9 /* safe-assert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "safe-assert.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,8 @@
 				FA6AB0281985E351008C13FE /* scalar-variable.cpp */,
 				FA6AB02B1985E351008C13FE /* struct-variable.hpp */,
 				FA6AB02A1985E351008C13FE /* struct-variable.cpp */,
+				FA6AB0361985EF78008C13FE /* function-variable.hpp */,
+				FA6AB0351985EF78008C13FE /* function-variable.cpp */,
 			);
 			path = variable;
 			sourceTree = "<group>";
@@ -159,7 +163,6 @@
 				FA808C9A1984512A00F022DF /* main.cpp */,
 				FA808C9C1984512A00F022DF /* LlvmToDart.1 */,
 				FAD4ABD31984682A001949A9 /* llvm-includes.hpp */,
-				FAD4ABD71984963D001949A9 /* safe-assert.hpp */,
 				FA2AAE79198588760072D648 /* encodable.hpp */,
 				FA2AAE78198588760072D648 /* encodable.cpp */,
 			);
@@ -219,6 +222,7 @@
 			files = (
 				FA6AB02D1985E351008C13FE /* struct.cpp in Sources */,
 				FA808C9B1984512A00F022DF /* main.cpp in Sources */,
+				FA6AB0371985EF78008C13FE /* function-variable.cpp in Sources */,
 				FA2AAE7A198588760072D648 /* encodable.cpp in Sources */,
 				FA6AB0301985E351008C13FE /* scalar-variable.cpp in Sources */,
 				FA6AB02E1985E351008C13FE /* array-variable.cpp in Sources */,

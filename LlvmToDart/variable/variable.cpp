@@ -3,6 +3,7 @@
 #include "scalar-variable.hpp"
 #include "struct-variable.hpp"
 #include "array-variable.hpp"
+#include "function-variable.hpp"
 
 namespace llvmtodart {
 
@@ -11,6 +12,7 @@ Variable * Variable::CreateVariable(Session & s, const std::string & name,
   Variable * f = ScalarVariable::CreateWithType(s, name, type);
   if (!f) f = StructVariable::CreateWithType(s, name, type);
   if (!f) f = ArrayVariable::CreateWithType(s, name, type);
+  if (!f) f = FunctionVariable::CreateWithType(s, name, type);
   return f;
 }
 

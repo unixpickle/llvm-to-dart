@@ -10,7 +10,7 @@ class Session;
 class Variable {
 public:
   static Variable * CreateVariable(Session & session,
-                                const std::string & name, Type * type);
+                                   const std::string & name, Type * type);
   
   Variable(Session & session, const std::string & name);
   

@@ -11,9 +11,9 @@ StructVariable * StructVariable::CreateWithType(Session & s,
   return new StructVariable(s, name, newName);
 }
 
-StructVariable::StructVariable(Session & s, const std::string & _VariableName,
+StructVariable::StructVariable(Session & s, const std::string & _name,
                          const std::string & _structName)
-  : Variable(s, _VariableName), structName(_structName) {
+  : Variable(s, _name), structName(_structName) {
 }
 
 void StructVariable::PrintType(raw_ostream & stream) const {
