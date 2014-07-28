@@ -3,19 +3,19 @@
 
 #include "struct.hpp"
 #include "encodable.hpp"
+#include "session-object.hpp"
 
 namespace llvmtodart {
 
 class Session;
 
-class StructTable : public Encodable {
+class StructTable : public Encodable, public SessionObject {
 public:
   StructTable(Session & s);
   
-  void Print(raw_ostream & stream) const;
+  virtual void Print(raw_ostream & stream) const;
   
 private:
-  Session & session;
   SetVector<Struct> types;
 };
 

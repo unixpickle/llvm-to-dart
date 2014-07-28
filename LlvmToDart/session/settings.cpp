@@ -7,7 +7,7 @@ std::string Settings::GetTab() const {
   return "  ";
 }
 
-std::string Settings::FieldName(unsigned int idx) const {
+std::string Settings::VariableName(unsigned int idx) const {
   std::stringstream str;
   str << "field" << idx;
   return str.str();

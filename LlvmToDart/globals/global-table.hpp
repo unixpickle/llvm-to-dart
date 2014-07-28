@@ -2,12 +2,11 @@
 #define __LLVMTODART__GLOBAL_TABLE__
 
 #include "encodable.hpp"
+#include "session-object.hpp"
 
 namespace llvmtodart {
 
-class Session;
-
-class GlobalTable : public Encodable {
+class GlobalTable : public Encodable, public SessionObject {
 public:
   GlobalTable(Session & session);
   
@@ -15,7 +14,6 @@ public:
   
 private:
   const Module::GlobalListType & list;
-  Session & session;
 };
 
 }

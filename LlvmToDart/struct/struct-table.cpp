@@ -3,16 +3,16 @@
 
 namespace llvmtodart {
 
-StructTable::StructTable(Session & s) : session(s) {
+StructTable::StructTable(Session & s) : SessionObject(s) {
   FindUsedTypes finder;
-  finder.runOnModule(session.GetModule());
+  finder.runOnModule(GetSession().GetModule());
   auto iterEnd = finder.getTypes().end();
   for (auto iter = finder.getTypes().begin(); iter != iterEnd; ++iter) {
     Type * type = *iter;
     if (!type->isStructTy()) continue;
     StructType & info = *static_cast<StructType *>(type);
     if (info.isLiteral()) continue;
-    Struct st(session, info);
+    Struct st(GetSession(), info);
     types.insert(st);
   }
 }

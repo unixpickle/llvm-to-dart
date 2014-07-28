@@ -4,8 +4,11 @@
 #include "settings.hpp"
 #include "global-table.hpp"
 #include "struct-table.hpp"
+#include <string>
 
 namespace llvmtodart {
+
+class IndentScope;
 
 class Session {
 public:
@@ -16,6 +19,12 @@ public:
   
   const GlobalTable & GetGlobals() const;
   const StructTable & GetStructs() const;
+  
+  std::string GetIndentation() const;
+  
+protected:
+  friend class IndentScope;
+  int indentCount = 0;
   
 private:
   const Settings & settings;

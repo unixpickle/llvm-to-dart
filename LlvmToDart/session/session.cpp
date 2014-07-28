@@ -1,4 +1,5 @@
 #include "session.hpp"
+#include <sstream>
 
 namespace llvmtodart {
 
@@ -20,6 +21,14 @@ const GlobalTable & Session::GetGlobals() const {
 
 const StructTable & Session::GetStructs() const {
   return structs;
+}
+
+std::string Session::GetIndentation() const {
+  std::stringstream str("");
+  for (int i = 0; i < indentCount; i++) {
+    str << GetSettings().GetTab();
+  }
+  return str.str();
 }
 
 }

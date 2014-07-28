@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA2AAE64198584890072D648 /* array-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE58198584890072D648 /* array-field.cpp */; };
-		FA2AAE65198584890072D648 /* field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE5A198584890072D648 /* field.cpp */; };
-		FA2AAE66198584890072D648 /* primitive-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE5C198584890072D648 /* primitive-field.cpp */; };
-		FA2AAE67198584890072D648 /* struct-field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE5E198584890072D648 /* struct-field.cpp */; };
-		FA2AAE68198584890072D648 /* struct-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE60198584890072D648 /* struct-table.cpp */; };
-		FA2AAE69198584890072D648 /* struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE62198584890072D648 /* struct.cpp */; };
 		FA2AAE6D198584B00072D648 /* global-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE6B198584B00072D648 /* global-table.cpp */; };
 		FA2AAE74198586FA0072D648 /* settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE72198586FA0072D648 /* settings.cpp */; };
 		FA2AAE77198587030072D648 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE75198587030072D648 /* session.cpp */; };
 		FA2AAE7A198588760072D648 /* encodable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA2AAE78198588760072D648 /* encodable.cpp */; };
+		FA6AB02C1985E351008C13FE /* struct-table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB01F1985E351008C13FE /* struct-table.cpp */; };
+		FA6AB02D1985E351008C13FE /* struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0211985E351008C13FE /* struct.cpp */; };
+		FA6AB02E1985E351008C13FE /* array-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0241985E351008C13FE /* array-variable.cpp */; };
+		FA6AB02F1985E351008C13FE /* variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0261985E351008C13FE /* variable.cpp */; };
+		FA6AB0301985E351008C13FE /* scalar-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0281985E351008C13FE /* scalar-variable.cpp */; };
+		FA6AB0311985E351008C13FE /* struct-variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB02A1985E351008C13FE /* struct-variable.cpp */; };
+		FA6AB0341985E495008C13FE /* indent-scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6AB0321985E495008C13FE /* indent-scope.cpp */; };
 		FA808C9B1984512A00F022DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA808C9A1984512A00F022DF /* main.cpp */; };
 		FA808C9D1984512A00F022DF /* LlvmToDart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA808C9C1984512A00F022DF /* LlvmToDart.1 */; };
+		FACAE44A1985B0100096E60D /* session-object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAE4481985B0100096E60D /* session-object.cpp */; };
 		FAD4ABCF1984523F001949A9 /* libLLVM-3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */; };
 /* End PBXBuildFile section */
 
@@ -36,18 +38,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FA2AAE58198584890072D648 /* array-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "array-field.cpp"; sourceTree = "<group>"; };
-		FA2AAE59198584890072D648 /* array-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "array-field.hpp"; sourceTree = "<group>"; };
-		FA2AAE5A198584890072D648 /* field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = field.cpp; sourceTree = "<group>"; };
-		FA2AAE5B198584890072D648 /* field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = field.hpp; sourceTree = "<group>"; };
-		FA2AAE5C198584890072D648 /* primitive-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "primitive-field.cpp"; sourceTree = "<group>"; };
-		FA2AAE5D198584890072D648 /* primitive-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "primitive-field.hpp"; sourceTree = "<group>"; };
-		FA2AAE5E198584890072D648 /* struct-field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "struct-field.cpp"; sourceTree = "<group>"; };
-		FA2AAE5F198584890072D648 /* struct-field.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-field.hpp"; sourceTree = "<group>"; };
-		FA2AAE60198584890072D648 /* struct-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "struct-table.cpp"; sourceTree = "<group>"; };
-		FA2AAE61198584890072D648 /* struct-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-table.hpp"; sourceTree = "<group>"; };
-		FA2AAE62198584890072D648 /* struct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = struct.cpp; sourceTree = "<group>"; };
-		FA2AAE63198584890072D648 /* struct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = struct.hpp; sourceTree = "<group>"; };
 		FA2AAE6B198584B00072D648 /* global-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "global-table.cpp"; sourceTree = "<group>"; };
 		FA2AAE6C198584B00072D648 /* global-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "global-table.hpp"; sourceTree = "<group>"; };
 		FA2AAE72198586FA0072D648 /* settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settings.cpp; sourceTree = "<group>"; };
@@ -56,9 +46,25 @@
 		FA2AAE76198587030072D648 /* session.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hpp; sourceTree = "<group>"; };
 		FA2AAE78198588760072D648 /* encodable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = encodable.cpp; sourceTree = "<group>"; };
 		FA2AAE79198588760072D648 /* encodable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = encodable.hpp; sourceTree = "<group>"; };
+		FA6AB01F1985E351008C13FE /* struct-table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "struct-table.cpp"; sourceTree = "<group>"; };
+		FA6AB0201985E351008C13FE /* struct-table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-table.hpp"; sourceTree = "<group>"; };
+		FA6AB0211985E351008C13FE /* struct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = struct.cpp; sourceTree = "<group>"; };
+		FA6AB0221985E351008C13FE /* struct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = struct.hpp; sourceTree = "<group>"; };
+		FA6AB0241985E351008C13FE /* array-variable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "array-variable.cpp"; sourceTree = "<group>"; };
+		FA6AB0251985E351008C13FE /* array-variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "array-variable.hpp"; sourceTree = "<group>"; };
+		FA6AB0261985E351008C13FE /* variable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = variable.cpp; sourceTree = "<group>"; };
+		FA6AB0271985E351008C13FE /* variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = variable.hpp; sourceTree = "<group>"; };
+		FA6AB0281985E351008C13FE /* scalar-variable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "scalar-variable.cpp"; sourceTree = "<group>"; };
+		FA6AB0291985E351008C13FE /* scalar-variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "scalar-variable.hpp"; sourceTree = "<group>"; };
+		FA6AB02A1985E351008C13FE /* struct-variable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "struct-variable.cpp"; sourceTree = "<group>"; };
+		FA6AB02B1985E351008C13FE /* struct-variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "struct-variable.hpp"; sourceTree = "<group>"; };
+		FA6AB0321985E495008C13FE /* indent-scope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "indent-scope.cpp"; sourceTree = "<group>"; };
+		FA6AB0331985E495008C13FE /* indent-scope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "indent-scope.hpp"; sourceTree = "<group>"; };
 		FA808C971984512A00F022DF /* LlvmToDart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LlvmToDart; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA808C9A1984512A00F022DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FA808C9C1984512A00F022DF /* LlvmToDart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LlvmToDart.1; sourceTree = "<group>"; };
+		FACAE4481985B0100096E60D /* session-object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "session-object.cpp"; sourceTree = "<group>"; };
+		FACAE4491985B0100096E60D /* session-object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "session-object.hpp"; sourceTree = "<group>"; };
 		FAD4ABCE1984523F001949A9 /* libLLVM-3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libLLVM-3.4.dylib"; path = "../../../../usr/local/Cellar/llvm/3.4.2/lib/libLLVM-3.4.dylib"; sourceTree = "<group>"; };
 		FAD4ABD31984682A001949A9 /* llvm-includes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "llvm-includes.hpp"; sourceTree = "<group>"; };
 		FAD4ABD71984963D001949A9 /* safe-assert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "safe-assert.hpp"; sourceTree = "<group>"; };
@@ -76,25 +82,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA2AAE57198584890072D648 /* types */ = {
-			isa = PBXGroup;
-			children = (
-				FA2AAE61198584890072D648 /* struct-table.hpp */,
-				FA2AAE60198584890072D648 /* struct-table.cpp */,
-				FA2AAE63198584890072D648 /* struct.hpp */,
-				FA2AAE62198584890072D648 /* struct.cpp */,
-				FA2AAE5B198584890072D648 /* field.hpp */,
-				FA2AAE5A198584890072D648 /* field.cpp */,
-				FA2AAE5F198584890072D648 /* struct-field.hpp */,
-				FA2AAE5E198584890072D648 /* struct-field.cpp */,
-				FA2AAE59198584890072D648 /* array-field.hpp */,
-				FA2AAE58198584890072D648 /* array-field.cpp */,
-				FA2AAE5D198584890072D648 /* primitive-field.hpp */,
-				FA2AAE5C198584890072D648 /* primitive-field.cpp */,
-			);
-			path = types;
-			sourceTree = "<group>";
-		};
 		FA2AAE6A198584B00072D648 /* globals */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +98,38 @@
 				FA2AAE72198586FA0072D648 /* settings.cpp */,
 				FA2AAE76198587030072D648 /* session.hpp */,
 				FA2AAE75198587030072D648 /* session.cpp */,
+				FACAE4491985B0100096E60D /* session-object.hpp */,
+				FACAE4481985B0100096E60D /* session-object.cpp */,
+				FA6AB0331985E495008C13FE /* indent-scope.hpp */,
+				FA6AB0321985E495008C13FE /* indent-scope.cpp */,
 			);
 			path = session;
+			sourceTree = "<group>";
+		};
+		FA6AB01E1985E351008C13FE /* struct */ = {
+			isa = PBXGroup;
+			children = (
+				FA6AB0201985E351008C13FE /* struct-table.hpp */,
+				FA6AB01F1985E351008C13FE /* struct-table.cpp */,
+				FA6AB0221985E351008C13FE /* struct.hpp */,
+				FA6AB0211985E351008C13FE /* struct.cpp */,
+			);
+			path = struct;
+			sourceTree = "<group>";
+		};
+		FA6AB0231985E351008C13FE /* variable */ = {
+			isa = PBXGroup;
+			children = (
+				FA6AB0271985E351008C13FE /* variable.hpp */,
+				FA6AB0261985E351008C13FE /* variable.cpp */,
+				FA6AB0251985E351008C13FE /* array-variable.hpp */,
+				FA6AB0241985E351008C13FE /* array-variable.cpp */,
+				FA6AB0291985E351008C13FE /* scalar-variable.hpp */,
+				FA6AB0281985E351008C13FE /* scalar-variable.cpp */,
+				FA6AB02B1985E351008C13FE /* struct-variable.hpp */,
+				FA6AB02A1985E351008C13FE /* struct-variable.cpp */,
+			);
+			path = variable;
 			sourceTree = "<group>";
 		};
 		FA808C8E1984512A00F022DF = {
@@ -135,9 +152,10 @@
 		FA808C991984512A00F022DF /* LlvmToDart */ = {
 			isa = PBXGroup;
 			children = (
+				FA6AB01E1985E351008C13FE /* struct */,
+				FA6AB0231985E351008C13FE /* variable */,
 				FA2AAE71198586FA0072D648 /* session */,
 				FA2AAE6A198584B00072D648 /* globals */,
-				FA2AAE57198584890072D648 /* types */,
 				FA808C9A1984512A00F022DF /* main.cpp */,
 				FA808C9C1984512A00F022DF /* LlvmToDart.1 */,
 				FAD4ABD31984682A001949A9 /* llvm-includes.hpp */,
@@ -199,17 +217,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA2AAE64198584890072D648 /* array-field.cpp in Sources */,
-				FA2AAE67198584890072D648 /* struct-field.cpp in Sources */,
-				FA2AAE68198584890072D648 /* struct-table.cpp in Sources */,
-				FA2AAE66198584890072D648 /* primitive-field.cpp in Sources */,
+				FA6AB02D1985E351008C13FE /* struct.cpp in Sources */,
 				FA808C9B1984512A00F022DF /* main.cpp in Sources */,
 				FA2AAE7A198588760072D648 /* encodable.cpp in Sources */,
-				FA2AAE69198584890072D648 /* struct.cpp in Sources */,
+				FA6AB0301985E351008C13FE /* scalar-variable.cpp in Sources */,
+				FA6AB02E1985E351008C13FE /* array-variable.cpp in Sources */,
+				FA6AB02F1985E351008C13FE /* variable.cpp in Sources */,
+				FA6AB02C1985E351008C13FE /* struct-table.cpp in Sources */,
+				FACAE44A1985B0100096E60D /* session-object.cpp in Sources */,
 				FA2AAE77198587030072D648 /* session.cpp in Sources */,
 				FA2AAE74198586FA0072D648 /* settings.cpp in Sources */,
 				FA2AAE6D198584B00072D648 /* global-table.cpp in Sources */,
-				FA2AAE65198584890072D648 /* field.cpp in Sources */,
+				FA6AB0311985E351008C13FE /* struct-variable.cpp in Sources */,
+				FA6AB0341985E495008C13FE /* indent-scope.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

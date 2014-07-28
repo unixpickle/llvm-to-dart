@@ -4,7 +4,7 @@
 namespace llvmtodart {
 
 GlobalTable::GlobalTable(Session & s)
-  : session(s), list(s.GetModule().getGlobalList()) {
+  : SessionObject(s), list(s.GetModule().getGlobalList()) {
 }
 
 void GlobalTable::Print(llvm::raw_ostream & stream) const {

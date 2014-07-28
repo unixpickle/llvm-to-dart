@@ -8,7 +8,7 @@ namespace llvmtodart {
 class Settings {
 public:
   virtual std::string GetTab() const;
-  virtual std::string FieldName(unsigned int idx) const;
+  virtual std::string VariableName(unsigned int idx) const;
   virtual std::string EscapeSymbol(StringRef name) const;
 };
 

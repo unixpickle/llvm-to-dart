@@ -1,14 +1,15 @@
 #ifndef __LLVMTODART_STRUCT_HPP__
 #define __LLVMTODART_STRUCT_HPP__
 
-#include "field.hpp"
+#include "Variable.hpp"
 #include "encodable.hpp"
+#include "session-object.hpp"
 
 namespace llvmtodart {
 
 class Session;
 
-class Struct : public Encodable {
+class Struct : public Encodable, public SessionObject {
 public:
   Struct(Session &, const StructType &);
   Struct(const Struct &);
@@ -19,8 +20,8 @@ public:
   virtual void Print(raw_ostream &) const;
   std::string GetName() const;
   
-  unsigned int GetFieldCount() const;
-  const Field & GetField(unsigned int i) const;
+  unsigned int GetVariableCount() const;
+  const Variable & GetVariable(unsigned int i) const;
   
   bool operator==(const Struct &) const;
   bool operator!=(const Struct &) const;
@@ -28,10 +29,8 @@ public:
   bool operator<(const Struct &) const;
   
 protected:
-  Session & session;
   const StructType & typeInfo;
-  std::string className;
-  std::vector<Field *> fields;
+  std::vector<Variable *> Variables;
 };
 
 }
