@@ -12,12 +12,15 @@ public:
   virtual StringRef GetTypeName() const;
   virtual void PrintInitializer(raw_ostream & stream) const;
   virtual Type * Clone() const;
+  virtual uint64_t GetSize() const;
   
 private:
-  ScalarType(Session & session, StringRef primType, uint64_t vectorCount);
+  ScalarType(Session & session, StringRef primType, uint64_t vectorCount,
+             uint64_t size);
   
   string primType;
   uint64_t vectorCount;
+  uint64_t size;
 };
 
 }

@@ -3,8 +3,9 @@
 
 namespace llvmtodart {
 
-StructField::StructField(Type * t, const string & n, uint64_t o)
-  : type(t), fieldName(n), offset(o) {
+StructField::StructField(Type * t, unsigned int idx, uint64_t o)
+  : type(t), index(idx), offset(o),
+    fieldName(t->GetSession().GetSettings().VariableName(index)) {
 }
 
 StructField::~StructField() {
@@ -15,9 +16,20 @@ void StructField::PrintDeclaration(raw_ostream & stream) const {
   type->PrintDeclaration(stream, fieldName);
 }
 
-uint64_t StructField::GetSize() const {
-  // TODO: calculate the size using DataLayout etc.
-  return 0;
+uint64_t StructField::GetOffset() const {
+  return offset;
+}
+
+Type * StructField::GetType() const {
+  return type;
+}
+
+StringRef StructField::GetFieldName() const {
+  return fieldName;
+}
+
+unsigned int StructField::GetIndex() const {
+  return index;
 }
 
 void StructField::PrintDefinition(raw_ostream & stream) const {
@@ -26,8 +38,8 @@ void StructField::PrintDefinition(raw_ostream & stream) const {
   stream << ";";
   if (type->IsStructure()) {
     stream << "\n" << type->GetSession().GetIndentation() << fieldName
-      << ".ownerObject = this;\n" << type->GetSession().GetIndentation()
-      << fieldName << ".ownerOffset = " << offset << ";";
+      << ".parentObject = this;\n" << type->GetSession().GetIndentation()
+      << fieldName << ".parentOffset = " << offset << ";";
   }
 }
 

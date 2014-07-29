@@ -7,17 +7,25 @@ namespace llvmtodart {
 
 class StructField {
 public:
-  StructField(Type *, const string &, uint64_t);
+  StructField(Type *, unsigned int idx, uint64_t off);
   ~StructField();
+  
+  StructField(const StructField &) = delete;
+  StructField & operator=(const StructField &) = delete;
   
   void PrintDeclaration(raw_ostream &) const;
   void PrintDefinition(raw_ostream &) const;
-  uint64_t GetSize() const;
+  
+  uint64_t GetOffset() const;
+  Type * GetType() const;
+  StringRef GetFieldName() const;
+  unsigned int GetIndex() const;
   
 private:
   Type * type;
-  string fieldName;
+  unsigned int index;
   uint64_t offset;
+  string fieldName;
 };
 
 }

@@ -7,6 +7,9 @@
 
 namespace llvmtodart {
 
+Type::Type(Session & s) : SessionObject(s) {
+}
+
 Type * Type::Create(Session & s, llvm::Type * type) {
   Type * res = ScalarType::Create(s, type);
   if (!res) res = FunctionType::Create(s, type);
@@ -16,8 +19,7 @@ Type * Type::Create(Session & s, llvm::Type * type) {
 }
 
 void Type::PrintDeclaration(raw_ostream & stream, StringRef name) const {
-  stream << GetSession().GetIndentation() << GetTypeName() << " " << name
-    << ";";
+  stream << GetTypeName() << " " << name << ";";
 }
 
 bool Type::IsStructure() const {

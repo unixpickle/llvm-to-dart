@@ -12,12 +12,14 @@ public:
   virtual StringRef GetTypeName() const;
   virtual void PrintInitializer(raw_ostream & stream) const;
   virtual Type * Clone() const;
+  virtual uint64_t GetSize() const;
   virtual bool IsStructure() const;
   
 private:
-  StructType(Session &, const string & structName);
+  StructType(Session &, const string & structName, uint64_t size);
   
   string structName;
+  uint64_t size;
 };
 
 }

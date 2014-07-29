@@ -31,8 +31,7 @@ void FunctionType::PrintInitializer(raw_ostream & stream) const {
 
 void FunctionType::PrintDeclaration(raw_ostream & stream,
                                     StringRef name) const {
-  stream << GetSession().GetIndentation() << returnType->GetTypeName()
-    << " " << name << "(";
+  stream << returnType->GetTypeName() << " " << name << "(";
   for (auto i = 0; i < argumentTypes.size(); i++) {
     stream << argumentTypes[i]->GetTypeName();
     if (i + 1 < argumentTypes.size()) {
@@ -46,6 +45,10 @@ Type * FunctionType::Clone() const {
   return new FunctionType(GetSession(), type);
 }
 
+uint64_t FunctionType::GetSize() const {
+  DataLayout layout(GetSession().GetModule().getDataLayout());
+  return layout.getPointerTypeSize(type);
+}
 
 FunctionType::FunctionType(Session & s, llvm::FunctionType * t)
   : Type(s), type(t), typeName("Function") {

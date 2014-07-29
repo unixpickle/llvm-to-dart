@@ -8,29 +8,34 @@ StructTable::StructTable(Session & s) : SessionObject(s) {
   finder.runOnModule(GetSession().GetModule());
   auto iterEnd = finder.getTypes().end();
   for (auto iter = finder.getTypes().begin(); iter != iterEnd; ++iter) {
-    Type * type = *iter;
+    llvm::Type * type = *iter;
     if (!type->isStructTy()) continue;
-    StructType & info = *static_cast<StructType *>(type);
+    llvm::StructType & info = *static_cast<llvm::StructType *>(type);
     
-    // TODO: come up with system for literals
     if (info.isLiteral()) continue;
     
-    Struct st(GetSession(), info);
-    types.insert(st);
+    string name(GetSession().GetSettings().EscapeSymbol(info.getName()));
+    Struct * st = new Struct(GetSession(), info, name);
+    types.push_back(st);
+  }
+}
+
+StructTable::~StructTable() {
+  for (auto i = 0; i < types.size(); i++) {
+    delete types[i];
   }
 }
 
 void StructTable::Print(llvm::raw_ostream & stream) const {
   auto iterEnd = types.end();
   for (auto iter = types.begin(); iter != iterEnd; ++iter) {
-    Struct s = *iter;
-    s.Print(stream);
-    stream << "\n\n";
+    Struct & s = **iter;
+    stream << s << "\n\n";
   }
 }
 
-raw_ostream & operator<<(raw_ostream & stream, const StructTable & globals) {
-  globals.Print(stream);
+raw_ostream & operator<<(raw_ostream & stream, const StructTable & table) {
+  table.Print(stream);
   return stream;
 }
 

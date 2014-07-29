@@ -14,6 +14,7 @@ public:
   virtual StringRef GetTypeName() const;
   virtual void PrintInitializer(raw_ostream & stream) const;
   virtual Type * Clone() const;
+  virtual uint64_t GetSize() const;
   
 private:
   ArrayType(Session & s, uint64_t elements, Type * sub);

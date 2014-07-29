@@ -24,11 +24,12 @@ public:
   virtual void PrintInitializer(raw_ostream & stream) const = 0;
   virtual void PrintDeclaration(raw_ostream & stream, StringRef name) const;
   virtual Type * Clone() const = 0;
+  virtual uint64_t GetSize() const = 0;
   
   virtual bool IsStructure() const;
   
 protected:
-  Type(Session & session);
+  Type(Session &);
 };
 
 }

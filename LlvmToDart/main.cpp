@@ -3,14 +3,15 @@
 using namespace llvmtodart;
 
 int main(int argc, const char * argv[]) {
+  /*
   if (argc != 2) {
     errs() << "Usage: llvmtodart <some_file.s>\n";
     return 1;
   }
-  
+  */
   LLVMContext & context = llvm::getGlobalContext();
   llvm::SMDiagnostic err;
-  Module * module = llvm::ParseIRFile(argv[1], err, context);
+  Module * module = llvm::ParseIRFile("/Users/alex/Desktop/ir-test/static-cast.s", err, context);
   if (!module) {
     err.print("llvmtodart", llvm::errs());
     return 1;

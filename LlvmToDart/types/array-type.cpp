@@ -49,6 +49,10 @@ Type * ArrayType::Clone() const {
   return new ArrayType(GetSession(), elements, elementType->Clone());
 }
 
+uint64_t ArrayType::GetSize() const {
+  return elementType->GetSize() * elements;
+}
+
 ArrayType::ArrayType(Session & s, uint64_t elements, Type * sub)
   : Type(s), elements(elements), elementType(sub),
     typeName("List<" + elementType->GetTypeName().str() + ">") {

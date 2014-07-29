@@ -12,11 +12,15 @@ class Session;
 class StructTable : public Encodable, public SessionObject {
 public:
   StructTable(Session & s);
+  ~StructTable();
+  
+  StructTable(const StructTable &) = delete;
+  StructTable & operator=(const StructTable &) = delete;
   
   virtual void Print(raw_ostream & stream) const;
   
 private:
-  SetVector<Struct> types;
+  std::vector<Struct *> types;
 };
 
 }

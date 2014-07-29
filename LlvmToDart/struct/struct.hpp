@@ -12,8 +12,7 @@ class Session;
 
 class Struct : public Encodable, public SessionObject {
 public:
-  Struct(Session &, const llvm::StructType &);
-  Struct(Struct &&);
+  Struct(Session &, llvm::StructType &, StringRef name);
   ~Struct();
   
   Struct(const Struct &) = delete;
@@ -29,6 +28,10 @@ protected:
   string name;
   const llvm::StructType & typeInfo;
   std::vector<StructField *> fields;
+  
+private:
+  void PrintFieldIndexMethod(raw_ostream &) const;
+  void PrintFieldAccessMethod(raw_ostream &) const;
 };
 
 }

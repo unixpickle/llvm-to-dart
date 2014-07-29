@@ -22,7 +22,7 @@ std::string Settings::EscapeSymbol(StringRef name) const {
       ++i;
     } else if (str[i] == '.') {
       str[i] = '_';
-      str.insert(i + 1, "d");
+      str.insert(i + 1, "0");
       ++i;
     }
   }

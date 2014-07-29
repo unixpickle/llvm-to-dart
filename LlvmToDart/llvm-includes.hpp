@@ -29,6 +29,7 @@ using llvm::raw_ostream;
 using llvm::FindUsedTypes;
 using llvm::LLVMContext;
 using llvm::DataLayout;
+using llvm::StructLayout;
 using llvm::outs;
 using llvm::errs;
 using std::string;

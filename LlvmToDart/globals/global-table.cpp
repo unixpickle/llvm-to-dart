@@ -11,7 +11,7 @@ void GlobalTable::Print(llvm::raw_ostream & stream) const {
   auto iter = list.begin();
   auto end = list.end();
   while (iter != end) {
-    const GlobalVariable & variable = *iter;
+    const llvm::GlobalVariable & variable = *iter;
     stream << variable.getName() << ": ";
     variable.getType()->print(stream);
     stream << "\n";
