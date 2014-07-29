@@ -4,33 +4,30 @@
 
 namespace llvmtodart {
 
-Struct::Struct(Session & a, const StructType & b)
-  : SessionObject(a), typeInfo(b) {
-  for (unsigned int i = 0; i < typeInfo.getNumElements(); i++) {
-    Type * VariableType = typeInfo.getElementType(i);
-    std::string VariableName(GetSession().GetSettings().VariableName(i));
-    
-    Variable * f = Variable::CreateVariable(GetSession(), VariableName, VariableType);
-    if (f) Variables.push_back(f);
+Struct::Struct(Session & s, const llvm::StructType & st)
+  : SessionObject(s), typeInfo(st) {
+  uint64_t offset = 0;
+  for (auto i = 0; i < typeInfo.getNumElements(); i++) {
+    llvm::Type * type = typeInfo.getElementType(i);
+    string name(s.GetSettings().VariableName(i));
+    Type * t = Type::Create(s, type);
+    if (!t) continue;
+    StructField * f = new StructField(t, name, offset);
+    offset += f->GetSize();
+    fields.push_back(f);
   }
 }
 
-Struct::Struct(const Struct & s) : SessionObject(s), typeInfo(s.typeInfo) {
-  for (unsigned int i = 0; i < s.GetVariableCount(); i++) {
-    Variables.push_back(s.GetVariable(i).Clone());
-  }
+Struct::Struct(Struct && s)
+  : SessionObject(s.GetSession()), typeInfo(s.typeInfo),
+    fields(std::move(s.fields)) {
+  s.fields.empty();
 }
 
 Struct::~Struct() {
-  while (Variables.size()) {
-    Variable * f = Variables[Variables.size() - 1];
-    Variables.pop_back();
-    delete f;
+  for (auto i = 0; i < fields.size(); i++) {
+    delete fields[i];
   }
-}
-
-std::string Struct::GetName() const {
-  return GetSession().GetSettings().EscapeSymbol(typeInfo.getName());
 }
 
 void Struct::Print(raw_ostream & stream) const {
@@ -41,47 +38,36 @@ void Struct::Print(raw_ostream & stream) const {
     stream << scope.GetIndentation() << "int parentOffset;\n";
     stream << scope.GetIndentation() << "Object parentObject;\n";
     
-    for (auto i = 0; i < GetVariableCount(); i++) {
+    for (auto i = 0; i < GetFieldCount(); i++) {
       if (i == 0) stream << "\n";
-      const Variable & var = GetVariable(i);
-      var.PrintDeclaration(stream);
+      stream << scope.GetIndentation();
+      const StructField & field = GetField(i);
+      field.PrintDeclaration(stream);
       stream << "\n";
     }
     stream << "\n" << scope.GetIndentation() << GetName() << "() {\n";
-    for (auto i = 0; i < GetVariableCount(); i++) {
-      IndentScope scope(GetSession());
-      const Variable & var = GetVariable(i);
-      var.PrintInitialization(stream);
+    for (auto i = 0; i < GetFieldCount(); i++) {
+      IndentScope inner(GetSession());
+      const StructField & field = GetField(i);
+      stream << inner.GetIndentation();
+      field.PrintDefinition(stream);
       stream << "\n";
-      
     }
     stream << scope.GetIndentation() << "}\n";
   }
-  stream << "}";
+  stream << GetSession().GetIndentation() << "}";
 }
 
-unsigned int Struct::GetVariableCount() const {
-  return (unsigned int)Variables.size();
+StringRef Struct::GetName() const {
+  return name;
 }
 
-const Variable & Struct::GetVariable(unsigned int i) const {
-  return *Variables[i];
+unsigned int Struct::GetFieldCount() const {
+  return typeInfo.getNumElements();
 }
 
-bool Struct::operator==(const Struct & s) const {
-  return &typeInfo == &s.typeInfo;
-}
-
-bool Struct::operator!=(const Struct & s) const {
-  return !((*this) == s);
-}
-
-bool Struct::operator>(const Struct & s) const {
-  return &typeInfo > &s.typeInfo;
-}
-
-bool Struct::operator<(const Struct & s) const {
-  return &typeInfo < &s.typeInfo;
+const StructField & Struct::GetField(unsigned int i) const {
+  return *fields[i];
 }
 
 }

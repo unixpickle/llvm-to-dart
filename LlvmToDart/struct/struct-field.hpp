@@ -8,6 +8,7 @@ namespace llvmtodart {
 class StructField {
 public:
   StructField(Type *, const string &, uint64_t);
+  ~StructField();
   
   void PrintDeclaration(raw_ostream &) const;
   void PrintDefinition(raw_ostream &) const;

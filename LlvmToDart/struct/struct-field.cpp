@@ -7,6 +7,10 @@ StructField::StructField(Type * t, const string & n, uint64_t o)
   : type(t), fieldName(n), offset(o) {
 }
 
+StructField::~StructField() {
+  delete type;
+}
+
 void StructField::PrintDeclaration(raw_ostream & stream) const {
   type->PrintDeclaration(stream, fieldName);
 }

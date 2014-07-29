@@ -4,6 +4,7 @@
 #include "type.hpp"
 #include "encodable.hpp"
 #include "session-object.hpp"
+#include "struct-field.hpp"
 
 namespace llvmtodart {
 
@@ -11,26 +12,23 @@ class Session;
 
 class Struct : public Encodable, public SessionObject {
 public:
-  Struct(Session &, const StructType &);
-  Struct(const Struct &);
+  Struct(Session &, const llvm::StructType &);
+  Struct(Struct &&);
   ~Struct();
   
-  Struct & operator=(const Struct &);
+  Struct(const Struct &) = delete;
+  Struct & operator=(const Struct &) = delete;
   
   virtual void Print(raw_ostream &) const;
-  std::string GetName() const;
+  StringRef GetName() const;
   
-  unsigned int GetVariableCount() const;
-  const Variable & GetVariable(unsigned int i) const;
-  
-  bool operator==(const Struct &) const;
-  bool operator!=(const Struct &) const;
-  bool operator>(const Struct &) const;
-  bool operator<(const Struct &) const;
+  unsigned int GetFieldCount() const;
+  const StructField & GetField(unsigned int i) const;
   
 protected:
-  const StructType & typeInfo;
-  std::vector<Variable *> Variables;
+  string name;
+  const llvm::StructType & typeInfo;
+  std::vector<StructField *> fields;
 };
 
 }
