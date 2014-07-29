@@ -1,7 +1,7 @@
 #ifndef __LLVMTODART_STRUCT_HPP__
 #define __LLVMTODART_STRUCT_HPP__
 
-#include "Variable.hpp"
+#include "type.hpp"
 #include "encodable.hpp"
 #include "session-object.hpp"
 

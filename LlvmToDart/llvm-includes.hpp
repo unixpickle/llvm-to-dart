@@ -18,10 +18,20 @@
 #include <llvm/IRReader/IRReader.h>
 #include <llvm/Support/raw_ostream.h>
 #include <llvm/Analysis/FindUsedTypes.h>
+#include <string>
 
 namespace llvmtodart {
 
-using namespace llvm;
+using llvm::Module;
+using llvm::StringRef;
+using llvm::SetVector;
+using llvm::raw_ostream;
+using llvm::FindUsedTypes;
+using llvm::LLVMContext;
+using llvm::DataLayout;
+using llvm::outs;
+using llvm::errs;
+using std::string;
 
 }
 

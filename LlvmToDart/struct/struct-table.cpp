@@ -11,7 +11,10 @@ StructTable::StructTable(Session & s) : SessionObject(s) {
     Type * type = *iter;
     if (!type->isStructTy()) continue;
     StructType & info = *static_cast<StructType *>(type);
+    
+    // TODO: come up with system for literals
     if (info.isLiteral()) continue;
+    
     Struct st(GetSession(), info);
     types.insert(st);
   }
