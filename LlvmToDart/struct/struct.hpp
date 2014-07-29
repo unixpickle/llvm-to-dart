@@ -32,6 +32,7 @@ protected:
 private:
   void PrintFieldAtOffsetMethod(raw_ostream &) const;
   void PrintFieldAtIndexMethod(raw_ostream &) const;
+  void PrintFieldOffsetMethod(raw_ostream &) const;
 };
 
 }

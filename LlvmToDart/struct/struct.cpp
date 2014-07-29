@@ -55,6 +55,8 @@ void Struct::Print(raw_ostream & stream) const {
     PrintFieldAtOffsetMethod(stream);
     stream << "\n";
     PrintFieldAtIndexMethod(stream);
+    stream << "\n";
+    PrintFieldOffsetMethod(stream);
   }
   stream << GetSession().GetIndentation() << "}";
 }
@@ -73,7 +75,7 @@ const StructField & Struct::GetField(unsigned int i) const {
 
 void Struct::PrintFieldAtOffsetMethod(raw_ostream & stream) const {
   stream << GetSession().GetIndentation()
-    << "dynamic fieldAtOffset(int offset) {\n";
+    << "dynamic getFieldAtOffset(int offset) {\n";
   {
     IndentScope scope(GetSession());
     bool hasDone = false;
@@ -106,7 +108,7 @@ void Struct::PrintFieldAtOffsetMethod(raw_ostream & stream) const {
 
 void Struct::PrintFieldAtIndexMethod(raw_ostream & stream) const {
   stream << GetSession().GetIndentation()
-    << "dynamic fieldAtIndex(int index) {\n";
+    << "dynamic getFieldAtIndex(int index) {\n";
   {
     IndentScope scope(GetSession());
     stream << scope.GetIndentation() << "switch (offset) {\n";
@@ -118,6 +120,34 @@ void Struct::PrintFieldAtIndexMethod(raw_ostream & stream) const {
           << ":\n";
         IndentScope inner(GetSession());
         stream << inner.GetIndentation() << "return field" << field.GetIndex()
+          << ";\n";
+      }
+      stream << scope.GetIndentation() << "default:\n";
+      {
+        IndentScope scope(GetSession());
+        stream << scope.GetIndentation() << "throw new RangeError('"
+        << "Invalid field index: ' + index);\n";
+      }
+    }
+    stream << scope.GetIndentation() << "}\n";
+  }
+  stream << GetSession().GetIndentation() << "}\n";
+}
+
+void Struct::PrintFieldOffsetMethod(raw_ostream & stream) const {
+  stream << GetSession().GetIndentation()
+    << "int getFieldOffset(int index) {\n";
+  {
+    IndentScope scope(GetSession());
+    stream << scope.GetIndentation() << "switch (index) {\n";
+    {
+      IndentScope scope(GetSession());
+      for (unsigned int i = 0; i < GetFieldCount(); i++) {
+        const StructField & field = GetField(i);
+        stream << scope.GetIndentation() << "case " << field.GetIndex()
+          << ":\n";
+        IndentScope inner(GetSession());
+        stream << inner.GetIndentation() << "return " << field.GetOffset()
           << ";\n";
       }
       stream << scope.GetIndentation() << "default:\n";

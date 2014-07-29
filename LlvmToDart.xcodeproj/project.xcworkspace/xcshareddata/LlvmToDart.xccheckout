@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BBEFAC2F-A38A-40F7-8480-CE52E379D24D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LlvmToDart</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BB09EBD9-A81F-4146-8369-E9F123813F18</key>
+		<string>https://github.com/unixpickle/llvm-to-dart.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LlvmToDart.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BB09EBD9-A81F-4146-8369-E9F123813F18</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/unixpickle/llvm-to-dart.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BB09EBD9-A81F-4146-8369-E9F123813F18</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BB09EBD9-A81F-4146-8369-E9F123813F18</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LlvmToDart</string>
+		</dict>
+	</array>
+</dict>
+</plist>

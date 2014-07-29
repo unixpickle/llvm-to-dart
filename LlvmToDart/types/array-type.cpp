@@ -28,8 +28,8 @@ void ArrayType::PrintInitializer(raw_ostream & stream) const {
   {
     IndentScope indent(GetSession());
     stream << indent.GetIndentation() << GetTypeName() << " result" << suffix
-      << ";\n" << indent.GetIndentation() << "for (int i = 0; i < "
-      << elements << "; i++) {\n" << indent.GetIndentation();
+      << " = [];\n" << indent.GetIndentation() << "for (int i = 0; i < "
+      << elements << "; i++) {\n";
     
     {
       IndentScope inner(GetSession());
