@@ -30,8 +30,8 @@ protected:
   std::vector<StructField *> fields;
   
 private:
-  void PrintFieldIndexMethod(raw_ostream &) const;
-  void PrintFieldAccessMethod(raw_ostream &) const;
+  void PrintFieldAtOffsetMethod(raw_ostream &) const;
+  void PrintFieldAtIndexMethod(raw_ostream &) const;
 };
 
 }

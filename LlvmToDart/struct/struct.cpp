@@ -9,6 +9,7 @@ Struct::Struct(Session & s, llvm::StructType & st, StringRef _name)
   DataLayout dLayout(s.GetModule().getDataLayout());
   const StructLayout * layout = dLayout.getStructLayout(&st);
   
+  unsigned int idx = 0;
   for (auto i = 0; i < typeInfo.getNumElements(); i++) {
     llvm::Type * type = typeInfo.getElementType(i);
     Type * t = Type::Create(s, type);
@@ -16,7 +17,7 @@ Struct::Struct(Session & s, llvm::StructType & st, StringRef _name)
     
     uint64_t offset = layout->getElementOffset(i);
     
-    StructField * f = new StructField(t, i, offset);
+    StructField * f = new StructField(t, idx++, offset);
     fields.push_back(f);
   }
 }
@@ -51,9 +52,9 @@ void Struct::Print(raw_ostream & stream) const {
       stream << "\n";
     }
     stream << scope.GetIndentation() << "}\n\n";
-    PrintFieldIndexMethod(stream);
+    PrintFieldAtOffsetMethod(stream);
     stream << "\n";
-    PrintFieldAccessMethod(stream);
+    PrintFieldAtIndexMethod(stream);
   }
   stream << GetSession().GetIndentation() << "}";
 }
@@ -70,34 +71,40 @@ const StructField & Struct::GetField(unsigned int i) const {
   return *fields[i];
 }
 
-void Struct::PrintFieldIndexMethod(raw_ostream & stream) const {
+void Struct::PrintFieldAtOffsetMethod(raw_ostream & stream) const {
   stream << GetSession().GetIndentation()
-    << "int fieldIndexAtOffset(int offset) {\n";
+    << "dynamic fieldAtOffset(int offset) {\n";
   {
     IndentScope scope(GetSession());
-    stream << scope.GetIndentation() << "switch (offset) {\n";
-    {
-      IndentScope scope(GetSession());
-      for (unsigned int i = 0; i < GetFieldCount(); i++) {
-        const StructField & field = GetField(i);
-        stream << scope.GetIndentation() << "case " << field.GetOffset() << ":\n";
-        IndentScope inner(GetSession());
-        stream << inner.GetIndentation() << "return " << field.GetIndex()
-        << ";\n";
+    bool hasDone = false;
+    for (auto i = 0; i < GetFieldCount(); i++) {
+      const StructField & field = GetField(i);
+      if (!field.GetType()->GetSize()) continue;
+      
+      if (!hasDone) {
+        hasDone = true;
+        stream << scope.GetIndentation();
+      } else {
+        stream << " else ";
       }
-      stream << scope.GetIndentation() << "default:\n";
+      
+      stream << "if (offset >= " << field.GetOffset() << " && offset < "
+        << field.GetType()->GetSize() + field.GetOffset() << ") {\n";
       {
         IndentScope scope(GetSession());
-        stream << scope.GetIndentation() << "throw new RangeError('"
-        << "Invalid field offset: ' + offset);\n";
+        stream << scope.GetIndentation() << "return field" << field.GetIndex()
+          << ";\n";
       }
+      stream << scope.GetIndentation() << "}";
     }
-    stream << scope.GetIndentation() << "}\n";
+    if (hasDone) stream << "\n";
+    stream << scope.GetIndentation() << "throw new RangeError('"
+      << "Invalid offset: ' + offset);\n";
   }
   stream << GetSession().GetIndentation() << "}\n";
 }
 
-void Struct::PrintFieldAccessMethod(raw_ostream & stream) const {
+void Struct::PrintFieldAtIndexMethod(raw_ostream & stream) const {
   stream << GetSession().GetIndentation()
     << "dynamic fieldAtIndex(int index) {\n";
   {
@@ -107,7 +114,8 @@ void Struct::PrintFieldAccessMethod(raw_ostream & stream) const {
       IndentScope scope(GetSession());
       for (unsigned int i = 0; i < GetFieldCount(); i++) {
         const StructField & field = GetField(i);
-        stream << scope.GetIndentation() << "case " << field.GetIndex() << ":\n";
+        stream << scope.GetIndentation() << "case " << field.GetIndex()
+          << ":\n";
         IndentScope inner(GetSession());
         stream << inner.GetIndentation() << "return field" << field.GetIndex()
           << ";\n";
